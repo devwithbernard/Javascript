@@ -1,0 +1,7 @@
+{
+  "editor.fontFamily": "'Cartograph CF', Consolas, 'Courier New', monospace",
+  "editor.codeActionsOnSave": {},
+  "editor.indentSize": "tabSize",
+  "editor.language.brackets": [],
+  "adonisjs.autocomplete.controllersDirectories": ["app/controllers"]
+}
