@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Colorize Diagonal Cells</title>
+    <style>
+        .diagonal{
+            background-color: red;
+            font-weight: 600;
+            color: white;
+        }
+
+        .green-diagonal{
+            background-color: green;
+            font-weight: 600;
+            color: white;
+        }
+
+        table, tr, th, td {
+            border-collapse: collapse;
+            padding: 5px;
+            font-size: 15px;
+            border: 1px solid black;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tbody id="table-body">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const tableBody = document.querySelector('#table-body');
+
+        // Creation du tableau
+        for(let i = 0; i < 5; i++) {
+            const tr = document.createElement('tr')
+
+            for(let j = 0; j < 5; j++) {
+                const td = document.createElement('td');
+                td.innerText = `(${j+1},${i+1})`;
+
+                // if(i === j) {
+                //   td.setAttribute('class', 'diagonal')
+                // }
+
+                tr.append(td)
+            }
+
+            tableBody.append(tr)
+        }
+
+        // rows and cells
+
+        for (let i = 0; i < tableBody.rows.length; i++) {
+            let row = tableBody.rows[i];
+
+            for (let j = 0; j < row.cells.length; j++) {
+                let cell = row.cells[i];
+
+                if (i === j) {
+                    for (let j = 0; j < row.cells.length; j++) {
+                        if (i === j) {
+                            row.cells[row.cells.length - (i + 1)].setAttribute('class', 'green-diagonal')
+                        }
+                    }
+                }
+            }
+
+            for (let j = 0; j < row.cells.length; j++) {
+                let cell = row.cells[i];
+
+                if (i === j) {
+                    cell.setAttribute('class', 'diagonal')
+                }
+
+            }
+        }
+
+    </script>
+</body>
+</html>

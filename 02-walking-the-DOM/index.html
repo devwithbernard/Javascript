@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Walking the DOM</title>
+    <style>
+        .siblings{
+            width: 100%;
+            padding: 1rem;
+            display: flex;
+        }
+        .child-1, .child-2 {
+            padding: 2rem;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid black;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+<h1>Walking the DOM</h1>
+<div class="container">
+    <h2>Navigate into the DOM</h2>
+    <p>The DOM allows us to do anything with elements and their contents, but first we need to reach the corresponding
+        DOM object.
+    </p>
+
+    <ul>
+        <li>Red</li>
+        <li>
+            <b>Information:</b>
+            <span>Blue</span>
+        </li>
+    </ul>
+    <hr>
+    <h3>Siblings and Parent</h3>
+    <div class="siblings">
+        <div class="child-1"></div>
+        <div class="child-2">
+        </div>
+    </div>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
