@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Searching elements in the DOM</title>
+    <style>
+        .hoverTitle{
+            position: relative;
+        }
+        .hoverTitle:hover::before {
+            content: 'This element has been hover';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            font-size: 16px;
+            color: black;
+        }
+        .container{
+            max-width: 70%;
+            padding: 1rem;
+            margin: 0 auto;
+            height: 100vh;
+        }
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card{
+            max-width: calc(50% - 10px);
+            width: calc(50% - 10px);
+            height: 150px;
+            border: 2px solid black;
+        }
+
+        table, tr, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title"> Searching elements in the DOM: getElements</h1>
+        <hr>
+        <h2 style="text-align: center; font-size: 2rem">Some Cards</h2>
+        <div class="cards-container">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+        <hr>
+        <table id="table">
+            <tr>
+                <td id="ageValue">Votre âge:</td>
+
+                <td>
+                    <label>
+                        <input type="radio" name="age" value="young" checked> moins de 18
+                    </label>
+                    <label>
+                        <input type="radio" name="age" value="mature"> entre 18 et 50
+                    </label>
+                    <label>
+                        <input type="radio" name="age" value="senior"> plus de 60
+                    </label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        // Get element by specifying its id
+        const title = document.getElementById('title');
+
+        title.onmouseover =  (e) => {
+            title.style.color = 'red';
+            title.setAttribute('class', 'hoverTitle');
+        }
+
+        title.onmouseleave = (e) => {
+            e.target.style.color = 'inherit';
+            e.target.removeAttribute('class');
+        }
+
+        // querySelectorAll
+        const allCards = document.querySelectorAll('.card');
+
+        function choiceColors(colors = []) {
+            const randomId = colors.length > 0 ? Math.floor(Math.random()*colors.length) : 0;
+            return colors[randomId];
+        }
+
+        const colors = ['red', 'green', 'blue', 'yellow', 'gray', 'orangered', 'darkblue', 'orange', 'darkgreen'];
+
+        if(allCards.length > 0) {
+            for (let i = 0; i < allCards.length; i++) {
+                const card = allCards[i];
+
+                card.onmouseover = (e) => {
+                    e.target.style.background = choiceColors(colors)
+                }
+
+                card.onmouseleave = (e) => {
+                    e.target.style.backgroundColor = choiceColors(colors)
+                }
+            }
+        }
+
+        // all cards : getElementsByClassName
+        const cards = document.getElementsByClassName('card');
+        console.log(cards);
+
+        // all Checkbox: getElements by name
+
+        const inputs = document.getElementsByName('age');
+
+        const ageValue = document.getElementById('ageValue')
+        for (const input of inputs) {
+            input.onchange = (e) => {
+                const value = e.target.value;
+
+                if(value === 'young') {
+                    ageValue.innerHTML = "Vous avez au plus 18 ans."
+                } else if(value === 'mature') {
+                    ageValue.innerHTML = "Vous avez entre 18 et 50 ans";
+                }else if(value === 'senior') {
+                    ageValue.innerText = 'Vous avez au moins 60 ans'
+                }
+            }
+        }
+    </script>
+</body>
+</html>
