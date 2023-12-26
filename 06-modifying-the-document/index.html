@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifying the DOM</title>
+    <style>
+        *, *::before, *::after{
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .header{
+            width: 100%;
+        }
+
+        .bg-black {
+            background-color: #111;
+        }
+
+        .p-2{
+            padding: 10px;
+        }
+
+        .py-4{
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .px-6{
+            padding-left:  30px;
+            padding-right:  30px;
+        }
+
+        .mb-2 {
+            margin-bottom: 10px;
+        }
+
+        .text-xl{
+            font-size: 40px;
+        }
+
+        .text-white{
+            color: white;
+        }
+
+
+        .center{
+            margin-inline: auto;
+        }
+
+        .max-width-60 {
+            max-width: 60%;
+        }
+
+        /* alert */
+        .alert {
+            padding: 8px 16px;
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+
+        .alert-success{
+            background-color: #bae3ba;
+            color: #1f8a1f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header bg-black py-4 px-6 mb-2">
+            <h3 class="text-white text-xl">Modifying the DOM</h3>
+        </header>
+        <main id="main" class="center max-width-60 p-2">
+            <ul style="margin: 30px 0">
+                <li data-task="1">Task 1</li>
+                <li data-task="2">Task 2</li>
+                <li data-task="3">Task 3</li>
+            </ul>
+        </main>
+    </div>
+<script defer src="./app.js"></script>
+</body>
+</html>
