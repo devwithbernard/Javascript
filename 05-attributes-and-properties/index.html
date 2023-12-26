@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attributes and properties</title>
+    <style>
+        .div-container{
+            width: 300px;
+            height: 150px;
+            border: 2px solid black;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body id="Body" name="body-page">
+<label for="something">
+    <input value="Add something" type="text" id="something" placeholder="Add something ...">
+</label>
+    <ul id="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <div id="someDivsContainer">
+        <div data-bgColor="green"></div>
+        <div data-bgColor = "red"></div>
+        <div data-bgColor="blue"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const allListItems = document.querySelectorAll('#list > li');
+
+            allListItems.forEach((listItem, index) => {
+                listItem.setAttribute('list-data', (index + 1).toString())
+            })
+
+
+            for (let i = 0; i < allListItems.length; i++) {
+                const currentListItem = allListItems[i];
+
+                currentListItem.addEventListener('click', (event) => {
+                    event.currentTarget.remove()
+                    const currentIndex = Number(event.currentTarget.getAttribute('list-data')) - 1;
+
+                    console.log(`list item at index ${currentIndex} has been deleted`)
+
+                })
+            }
+        })
+
+        // sayTagName
+
+        document.body.sayTagName = function () {
+            console.log(`Hi, I'm ${this.tagName}`);
+        }
+
+        document.body.sayTagName()
+
+        // HTML Attributes Standard
+        console.log('Type of input element:', document.querySelector('input').type)
+
+        // HTML Attributes Not Standard
+        console.log('Attribute name:', document.body.getAttribute('name'));
+
+        // All attributes of an element
+        const input = document.querySelector('input');
+
+        for (let {name, value} of input.attributes) {
+            console.log(`${name} : ${value}`)
+        }
+
+        // Non-Standard Attributes, Dataset
+        const someDivs = document.querySelectorAll('#someDivsContainer > div');
+
+        for (let i = 0; i < someDivs.length; i++) {
+            const div = someDivs[i];
+
+            div.setAttribute('class', 'div-container');
+            console.log(div.dataset.bgcolor)
+            div.style.backgroundColor = div.dataset.bgcolor
+        }
+    </script>
+</body>
+</html>
